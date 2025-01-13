@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>mini project</title>
+
+    <style>
+      body {
+        margin-top: 08em;
+        text-align: center;
+      }
+
+      textarea {
+        padding: 40px 40px;
+        border-radius: 2px;
+        border: 2px dashed #afdde5;
+        box-shadow: 15px 15px 25px 0px rgba(0, 0, 0, 0.5);
+      }
+      h2 {
+        color: rgb(214, 21, 82);
+      }
+      div {
+        margin: 40px 0px;
+        font-size: xx-large;
+        font-weight: bold;
+        color: #0fa4af;
+      }
+      button {
+        background-color: #afdde5;
+        padding: 6px 27px;
+        cursor: pointer;
+        border: none;
+        border-radius: 2px;
+        box-shadow: 15px 15px 25px 0px rgba(0, 0, 0, 0.5);
+      }
+    </style>
+  </head>
+  <body>
+    <section>
+      <form action="">
+        <textarea name="" id=""></textarea>
+        <h2>0</h2>
+        <button type="button">count</button>
+        <button type="button">reset</button>
+      </form>
+
+      <div></div>
+    </section>
+
+    <script>
+      let texa = document.querySelector("textarea");
+      let h2 = document.querySelector("h2");
+      let count = document.querySelectorAll("button")[0];
+      let reset = document.querySelectorAll("button")[1];
+
+      texa.addEventListener("input", (e) => {
+        count.addEventListener("click", () => {
+          let vol = /[aeiou]/gi;
+          h2.textContent = e.target.value.match(vol).length;
+        });
+      });
+      reset.addEventListener("click", () => {
+        h2.textContent = "0";
+        texa.value = "";
+      });
+
+      function clock() {
+        let date = new Date();
+
+        let hour = date.getHours();
+
+        let min = date.getMinutes();
+
+        let sec = date.getSeconds();
+
+        let period = "AM";
+
+        if (hour >= 12) {
+          period = "PM";
+        }
+        if (hour > 12) {
+          hour -= 12;
+        }
+        if (hour === 0) {
+          hour = 12;
+        }
+        hour = hour < 10 ? "0" + hour : hour;
+        min = min < 10 ? "0" + min : min;
+        sec = sec < 10 ? "0" + sec : sec;
+
+        let time = `${hour}: ${min}: ${sec} ${period}`;
+        console.log(time);
+
+        let div = document.querySelector("div");
+        div.textContent = time;
+      }
+      setInterval(clock, 1000);
+      clock();
+    </script>
+  </body>
+</html>
